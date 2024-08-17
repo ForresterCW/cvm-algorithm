@@ -17,7 +17,8 @@ def f_averageList(listToAverage, averageStorage):
     round(average, 1)
     averageStorage.append(average)
 
-# 
+
+# Main Loop
 randomAverages = []
 
 for i in range(1,11):
