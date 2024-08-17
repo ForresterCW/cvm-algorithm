@@ -24,11 +24,12 @@ def f_averageList(listToAverage):
 # Calculate error rates
 ## Error Rate = 1 - (Actual Average / Expected Average) * 100
 def f_calcualteErrorRate(numbersToTest, errorRateStorage):
-    averageStorage = []
-    f_averageList(numbersToTest, averageStorage)
-    errorRate = (1 - (averageStorage[-1] / ())) * 100
+    actual average = f_averageList(numbersToTest)
+    expectedAverage = f_expectedAverageN(len(numbersToTest)) # may be wrong index, possiblly +/- 1 
+    errorRate = (actualAverage / expectedAverage) * 100
 
+
+# Main Loop
 randomNumbers = [5, 7, 3, 5, 6, 7, 3]
 errorRates = []
-f_calcualteErrorRate(randomNumbers, errorRates)
-print(errorRates)
+print(f_calcualteErrorRate(randomNumbers))
