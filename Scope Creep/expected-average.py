@@ -53,7 +53,7 @@ def f_average_list(list_to_average):
     return average
 
 # Calculate error rates
-# Error Rate % = 1 - (( (Actual Average - Expected Average) / Expected Average) * 100) + 100
+## Error Rate % = 1 - (( (Actual Average - Expected Average) / Expected Average) * 100) + 100
 def f_error_rate_percent(list_to_test):
     """
     Calculate the error rate percentage between the actual average and the expected average for a list.
@@ -64,10 +64,18 @@ def f_error_rate_percent(list_to_test):
     Returns:
     int: The error rate percentage, rounded to the nearest whole number.
     """
-    actual_average = f_average_list(list_to_test)
-    expected_average = f_expected_average_n(len(list_to_test)) 
-    error_rate = (1 - (abs(actual_average) / abs(expected_average))) * - 100
+    # Calculate the actual average
+    actual_average = sum(list_to_test) / len(list_to_test)
+    actual_average = round(actual_average, 1)
+
+    # Calculate the expected average based on the length of the list
+    value_n = len(list_to_test)
+    expected_average = value_n - ((value_n - 1) * 0.5)
+
+    # Calculate the error rate
+    error_rate = (1 - (abs(actual_average) / abs(expected_average))) * -100
     return round(error_rate)
+
 
 # Main Loop 
 
