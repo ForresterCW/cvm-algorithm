@@ -10,19 +10,45 @@ def f_random_list(list_size, max_int):
         randomList.append(random_number)
     return randomList
 
-# Check if memory is full (pass/fail)
-def f_memory_check(active_list, memory_limit):
-    if len(active_list) < memory_limit:
-        return "pass"
-    if len(active_list) >= memory_limit:
-        return "fail"
-
-# Simple counting algorithm 
-
+# Simple counting algorithm with memory checking built in
+def f_simple_Counting_algorithm(source_list, memory_limit):
+    unique_list = []
+    for item in source_list:
+        # Check memory limit
+        if len(unique_list) >= memory_limit:
+            if debugging_state:
+                print(f"Final list at memory limit = {unique_list}")
+            return "! Fatal Error: Memory Limit reached !"
+        # Append source value to the unique list if it is not already there 
+        if item not in unique_list:
+            unique_list.append(item)
+    return unique_list
 
 # Main Loop
-memory_limit = 10
+debugging_state = True
+# debugging_state = False
 
-## Generate source list
-source_list = f_random_list(10, 10)
-print(source_list)
+source_list_size = 10
+source_max_int = 10
+memory_limit = 10
+probability_factor = 1
+
+## Generate Source List
+source_list = f_random_list(source_list_size, source_max_int)
+if debugging_state:
+    print(f"Debug source list =  {source_list}")
+
+## Baseline Counting Algorithm 
+baseline_uniques = len(f_simple_Counting_algorithm(source_list, memory_limit))
+if debugging_state:
+    print(f"Debug baseilne uniques = {baseline_uniques}")
+
+## Advanced CVM algorithm
+
+
+
+
+
+
+
+# Workshop
