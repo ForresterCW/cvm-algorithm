@@ -1,11 +1,7 @@
-# To build my version of the CVM algorithm, and visualize/explore the effects that the law of large numbers has on the error rates. 
-
-from enum import unique
-from itertools import count
 from random import randint
 
-# Generate a source list of random IDs
-def f_random_list(list_size, max_int):
+
+def f_generate_source_list(list_size, max_int):
     random_list = []
     for i in range(1, list_size + 1):
         random_number = randint(1, max_int)
@@ -15,7 +11,7 @@ def f_random_list(list_size, max_int):
         print()
     return random_list
 
-# Simple unique counting algorithm with memory checking and debug display
+
 def f_simple_Counting_algorithm(source_list, memory_limit):
     unique_items_list = []
     for item in source_list:
@@ -34,7 +30,8 @@ def f_simple_Counting_algorithm(source_list, memory_limit):
             unique_items_list.append(item)
     return unique_items_list
 
-# Advanced CVM algorithm with memory checking and debug display
+
+# def f_cvm_algorithm
 
 
 # Main Loop
@@ -47,7 +44,7 @@ probability_factor = 1
 probability_scaling_factor = 0.5
 
 ## Generate Source List
-source_list = f_random_list(source_list_size, source_max_int)
+source_list = f_generate_source_list(source_list_size, source_max_int)
 
 ## Baseline Counting Algorithm 
 # baseline_unique_items_list = f_simple_Counting_algorithm(source_list, memory_limit)
@@ -88,7 +85,6 @@ def f_OUTDATED_cvm_algorithm(source_list, memory_limit, probability_factor):
 
 
 # This should be consolodated.
-
 def f_cvm_algorithm(source_list, memory_limit, probability_factor):
     unique_items_list = []
 
@@ -104,8 +100,5 @@ def f_cvm_algorithm(source_list, memory_limit, probability_factor):
                 print(f"{unique_items_list} at max memory exit.")
             print("!!! MAX MEMORY !!!")
                 
-
-
-
 
 f_cvm_algorithm(source_list, memory_limit, probability_factor)
