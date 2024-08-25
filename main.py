@@ -1,6 +1,7 @@
 from random import randint
 
 
+# & Generate List of Random Numbers
 def f_generate_source_list(list_size, max_int):
     random_list = []
     for i in range(1, list_size + 1):
@@ -12,6 +13,7 @@ def f_generate_source_list(list_size, max_int):
     return random_list
 
 
+# & Simple Counting Algorithm
 def f_simple_Counting_algorithm(source_list, memory_limit):
     unique_items_list = []
     for item in source_list:
@@ -31,10 +33,12 @@ def f_simple_Counting_algorithm(source_list, memory_limit):
     return unique_items_list
 
 
+# & CVM Algorithm
 # def f_cvm_algorithm
 
 
-# Main Loop
+# * Main Loop
+
 debugging_state = True
 # debugging_state = False
 source_list_size = 10
@@ -43,7 +47,7 @@ memory_limit = 10
 probability_factor = 1
 probability_scaling_factor = 0.5
 
-## Generate Source List
+# Generate Source List
 source_list = f_generate_source_list(source_list_size, source_max_int)
 
 ## Baseline Counting Algorithm
@@ -52,7 +56,9 @@ source_list = f_generate_source_list(source_list_size, source_max_int)
 ## Advanced CVM algorithm
 
 
-# Workshop
+# ^ Workshop
+
+
 # Advanced CVM algorithm with memory checking and debug display
 
 
@@ -84,7 +90,7 @@ def f_OUTDATED_cvm_algorithm(source_list, memory_limit, probability_factor):
     print("test")
 
 
-# This should be consolodated.
+# ! This should be consolodated.
 def f_cvm_algorithm(source_list, memory_limit, probability_factor):
     unique_items_list = []
 
