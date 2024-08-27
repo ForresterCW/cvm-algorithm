@@ -56,7 +56,7 @@ source_list = f_generate_source_list(source_list_size, source_max_int)
 ## Advanced CVM algorithm
 
 
-# ^ Workshop
+# ~ Workshop
 
 
 # Advanced CVM algorithm with memory checking and debug display

@@ -4,7 +4,7 @@
 
 # * Main Loop
 
-# ^ Workshop
+# ~ Workshop
 
 # ! Issues/Todo/Working
 
@@ -13,5 +13,5 @@
 
 # Unused
 # ? Blue
-# ~ Purple
+# ^ Yellow
 # TODO Mustard
