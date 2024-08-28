@@ -79,11 +79,11 @@ def f_cvm_algorithm(
 
 # * Main Loop
 debugging_state = False
-source_list_size = 50
-source_max_int = 100
-memory_limit = 10
+source_list_size = 1000000
+source_max_int = 1000
+memory_limit = 50
 probability_factor = 1
-probability_scaling_factor = 0.5
+probability_scaling_factor = 0.25
 
 # Initialize Source List
 source_list = f_generate_source_list(source_list_size, source_max_int)
@@ -97,16 +97,22 @@ print(f"\nBaseline Unique Values \n{actual_unique_values}")
 cvm_unique_values, final_probability_factor = f_cvm_algorithm(
     source_list, memory_limit, probability_factor, probability_scaling_factor
 )
-print(f"\nCMV Unique Values \n{cvm_unique_values}")
+print(f"\nCVM Unique Values \n{cvm_unique_values}")
 print(f"\nProbability factor \n{final_probability_factor}\n")
 
 # Estimate unique values 
 estimate_uniques = len(cvm_unique_values) / final_probability_factor
 print(f"\nEstimated unique values = {estimate_uniques}")
-print(f"\nActual unique values = {len(actual_unique_values)}")
+print(f"Actual unique values = {len(actual_unique_values)}")
 
 # Current error rate 
-current_error_rate_percent = round((estimate_uniques / len(actual_unique_values)) * 100)
-print(f"\nCurrent error rate = {current_error_rate_percent}% correct")
+#// current_error_rate_percent = round((estimate_uniques / len(actual_unique_values)) * 100)
+#// print(f"\nCurrent error rate = {current_error_rate_percent}% correct")
+    # Calculate the absolute difference between estimated and actual unique values
+absolute_difference = abs(estimate_uniques - len(actual_unique_values))
+    # Express the absolute difference as a percentage of the actual unique values
+current_error_rate_percent = round((absolute_difference / len(actual_unique_values)) * 100, 2)
+print(f"\nCurrent error rate = {current_error_rate_percent}%")
+
 
 print()
