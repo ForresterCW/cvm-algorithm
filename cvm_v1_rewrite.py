@@ -43,7 +43,7 @@ def f_cvm_algorithm(
                 for item in destination_list[:]:  # Iterate over a shallow copy of destination list
                     if random() > probability_factor:
                         destination_list.remove(item) # Remove the first occurance of item
-        
+
     return destination_list
 
 

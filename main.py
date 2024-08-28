@@ -47,35 +47,32 @@ def f_cvm_algorithm(
     # Variables
     destination_list = []
 
-    # Core Loop
-    for item in source_list[
-        :
-    ]:  # Iterate over a copy of source_list to avoid modifying the list during iteration
+    # Perform CVM on every item in source list
+    for item in source_list:
 
-        # Memory Check
-        if len(destination_list) >= memory_limit:
-            # Adjust probability factor
-            probability_factor *= probability_scaling_factor
-
-            # Iterate through destination list and randomly delete items based on the probability factor
-            probability_index = 0
-            while probability_index < len(destination_list):
-                if random() < probability_factor:
-                    del destination_list[probability_index]
-                    # Do not increment index if an item was deleted
-                else:
-                    probability_index += 1
-
-            continue  # Continue to the next item in source_list
-
-        # If item is in destination_list, remove it from source_list
+        # Remove value if it is in destination list
         if item in destination_list:
-            continue  # Skip to the next item in source_list
-        else:
-            # Decide to add the item to destination_list based on a random chance
-            if random() < probability_factor:
+            destination_list.remove(item)
+        
+            # Coin flip to store in destination list
+            if random() <= probability_factor:
                 destination_list.append(item)
-            # If not added, just continue to the next item
+
+        # Coin flip to store in destination list
+        else:
+            if random() <= probability_factor:
+                destination_list.append(item)
+
+        # ! Memory check and down sizing 
+            if len(destination_list) > memory_limit:
+
+                # Scale probability
+                probability_factor *= probability_scaling_factor
+
+                # Down size destination list 
+                for item in destination_list[:]:  # Iterate over a shallow copy of destination list
+                    if random() > probability_factor:
+                        destination_list.remove(item) # Remove the first occurance of item
 
     return destination_list, probability_factor
 
@@ -93,8 +90,8 @@ source_list = f_generate_source_list(source_list_size, source_max_int)
 print(f"\nSource list \n{source_list}")
 
 # Baseline
-debug_unique_values = f_debug_uniques(source_list, memory_limit)
-print(f"\nBaseline Unique Values \n{debug_unique_values}")
+actual_unique_values = f_debug_uniques(source_list, memory_limit)
+print(f"\nBaseline Unique Values \n{actual_unique_values}")
 
 # Run CVM Algorithm
 cvm_unique_values, final_probability_factor = f_cvm_algorithm(
@@ -102,3 +99,14 @@ cvm_unique_values, final_probability_factor = f_cvm_algorithm(
 )
 print(f"\nCMV Unique Values \n{cvm_unique_values}")
 print(f"\nProbability factor \n{final_probability_factor}\n")
+
+# Estimate unique values 
+estimate_uniques = len(cvm_unique_values) / final_probability_factor
+print(f"\nEstimated unique values = {estimate_uniques}")
+print(f"\nActual unique values = {len(actual_unique_values)}")
+
+# Current error rate 
+current_error_rate_percent = round((estimate_uniques / len(actual_unique_values)) * 100)
+print(f"\nCurrent error rate = {current_error_rate_percent}% correct")
+
+print()
