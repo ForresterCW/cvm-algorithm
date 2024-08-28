@@ -46,6 +46,7 @@ def f_cvm_algorithm(
 ):
     # Variables
     destination_list = []
+    probability_factor_iteration = 0
 
     # Core Loop
     for item in source_list[
@@ -54,6 +55,11 @@ def f_cvm_algorithm(
 
         # Memory Check
         if len(destination_list) >= memory_limit:
+            # Print list into memory limit x and increment
+            print(f"\nList INTO memory limit {probability_factor_iteration}")
+            print(f"{destination_list}")
+            probability_factor_iteration += 1
+
             # Adjust probability factor
             probability_factor *= probability_scaling_factor
 
@@ -64,6 +70,11 @@ def f_cvm_algorithm(
                     del destination_list[probability_index]
                     # Do not increment index if an item was deleted
                 else:
+                    # Print list coming out of memory limit x -1
+                    print(
+                        f"\nList OUT OF memory limit {probability_factor_iteration - 1}"
+                    )
+                    print(f"{destination_list}")
                     probability_index += 1
 
             continue  # Continue to the next item in source_list
@@ -84,13 +95,15 @@ def f_cvm_algorithm(
 debugging_state = False
 source_list_size = 50
 source_max_int = 100
-memory_limit = 10
+memory_limit = 5
 probability_factor = 1
 probability_scaling_factor = 0.5
 
 # Initialize Source List
-source_list = f_generate_source_list(source_list_size, source_max_int)
-print(f"\nSource list \n{source_list}")
+# source_list = f_generate_source_list(source_list_size, source_max_int)
+# print(f"\nSource list \n{source_list}")
+source_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
 
 # Baseline
 debug_unique_values = f_debug_uniques(source_list, memory_limit)
