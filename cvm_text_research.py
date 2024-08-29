@@ -98,7 +98,7 @@ def f_cvm_algorithm(
 
 # * Main Loop
 debugging_state = False
-source_list_size = 10000
+source_list_size = 1000000
 source_max_int = 100
 memory_limit = 50
 probability_factor = 1
@@ -131,14 +131,20 @@ cvm_time = cvm_end_time - cvm_start_time
 print("\nResearch Results")
 memory_reduction_percentage = memory_limit / source_list_size * 100
 readable_memory_reduction = f_human_readable_number(memory_reduction_percentage)
-
 print(
-    f'The CVM uses {memory_reduction_percentage:.1f}% of the memory that a traditional "COUNT IF" method uses.'
+    f'The CVM uses {memory_reduction_percentage}% of the memory that a traditional "COUNT IF" method uses.'
 )
-
 ## Execution Times
 time_reduction_percentage = naive_time / cvm_time * 100
 readable_time_reduction = f_human_readable_number(time_reduction_percentage)
 print(f"And is approximately {time_reduction_percentage:.1f}% faster.")
+# Error Rate
+estimate_uniques = len(cvm_unique_values) / final_probability_factor
+current_error_rate_percent = round(
+    ((abs(estimate_uniques - len(actual_unique_values))) / len(actual_unique_values))
+    * 100,
+    2,
+)
+print(f"Current error rate = {current_error_rate_percent}%")
 
 print()
