@@ -138,13 +138,15 @@ print(
 time_reduction_percentage = naive_time / cvm_time * 100
 readable_time_reduction = f_human_readable_number(time_reduction_percentage)
 print(f"And is approximately {time_reduction_percentage:.1f}% faster.")
+
 # Error Rate
-estimate_uniques = len(cvm_unique_values) / final_probability_factor
+estimated_unique_values = len(cvm_unique_values) / final_probability_factor
 current_error_rate_percent = round(
-    ((abs(estimate_uniques - len(actual_unique_values))) / len(actual_unique_values))
+    (
+        (abs(estimated_unique_values - len(actual_unique_values)))
+        / len(actual_unique_values)
+    )
     * 100,
     2,
 )
 print(f"Current error rate = {current_error_rate_percent}%")
-
-print()
