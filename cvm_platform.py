@@ -53,7 +53,7 @@ def f_cvm_algorithm(
         # Remove value if it is in destination list
         if item in destination_list:
             destination_list.remove(item)
-        
+
             # Coin flip to store in destination list
             if random() <= probability_factor:
                 destination_list.append(item)
@@ -63,16 +63,20 @@ def f_cvm_algorithm(
             if random() <= probability_factor:
                 destination_list.append(item)
 
-        # ! Memory check and down sizing 
+            # ! Memory check and down sizing
             if len(destination_list) > memory_limit:
 
                 # Scale probability
                 probability_factor *= probability_scaling_factor
 
-                # Down size destination list 
-                for item in destination_list[:]:  # Iterate over a shallow copy of destination list
+                # Down size destination list
+                for item in destination_list[
+                    :
+                ]:  # Iterate over a shallow copy of destination list
                     if random() > probability_factor:
-                        destination_list.remove(item) # Remove the first occurance of item
+                        destination_list.remove(
+                            item
+                        )  # Remove the first occurance of item
 
     return destination_list, probability_factor
 
@@ -98,20 +102,19 @@ cvm_unique_values, final_probability_factor = f_cvm_algorithm(
     source_list, memory_limit, probability_factor, probability_scaling_factor
 )
 print(f"\nCVM Unique Values \n{cvm_unique_values}")
-print(f"\nProbability factor \n{final_probability_factor}\n")
+print(f"\nProbability factor \n{final_probability_factor}")
 
-# Estimate unique values 
+# Estimate unique values
 estimate_uniques = len(cvm_unique_values) / final_probability_factor
 print(f"\nEstimated unique values = {estimate_uniques}")
 print(f"Actual unique values = {len(actual_unique_values)}")
 
-# Current error rate 
-#// current_error_rate_percent = round((estimate_uniques / len(actual_unique_values)) * 100)
-#// print(f"\nCurrent error rate = {current_error_rate_percent}% correct")
-    # Calculate the absolute difference between estimated and actual unique values
-absolute_difference = abs(estimate_uniques - len(actual_unique_values))
-    # Express the absolute difference as a percentage of the actual unique values
-current_error_rate_percent = round((absolute_difference / len(actual_unique_values)) * 100, 2)
+# Current error rate
+current_error_rate_percent = round(
+    ((abs(estimate_uniques - len(actual_unique_values))) / len(actual_unique_values))
+    * 100,
+    2,
+)
 print(f"\nCurrent error rate = {current_error_rate_percent}%")
 
 
